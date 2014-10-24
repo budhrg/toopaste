@@ -1,41 +1,14 @@
-#!/usr/local/bin/ruby -rubygems
-
 require 'sinatra'
-require 'dm-core'
-require 'dm-validations'
-require 'dm-timestamps'
-require 'dm-migrations'
-require 'syntaxi'
+require 'sinatra/activerecord'
+require 'coderay'
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://toopaste.db")
+set :database, 'sqlite3:db/development.sqlite3'
 
-class Snippet
-  include DataMapper::Resource
-
-  property :id,         Serial # primary serial key
-  property :title,      String, :required => true, :length => 32
-  property :body,       Text,   :required => true
-  property :created_at, DateTime
-  property :updated_at, DateTime
-
-  # validates_present :body
-  # validates_length :body, :minimum => 1
-
-  Syntaxi.line_number_method = 'floating'
-  Syntaxi.wrap_at_column = 80
-  #Syntaxi.wrap_enabled = false
-
+class Snippet < ActiveRecord::Base
   def formatted_body
-    replacer = Time.now.strftime('[code-%d]')
-    html = Syntaxi.new("[code lang='ruby']#{self.body.gsub('[/code]',
-    replacer)}[/code]").process
-    "<div class=\"syntax syntax_ruby\">#{html.gsub(replacer, 
-    '[/code]')}</div>"
+    CodeRay.scan(body, :ruby).div(line_numbers: :table)
   end
 end
-
-DataMapper.auto_upgrade!
-#File.open('toopaste.pid', 'w') { |f| f.write(Process.pid) }
 
 # new
 get '/' do
@@ -44,8 +17,8 @@ end
 
 # create
 post '/' do
-  @snippet = Snippet.new(:title => params[:snippet_title],
-                         :body  => params[:snippet_body])
+  @snippet = Snippet.new(title: params[:snippet_title],
+                         body: params[:snippet_body])
   if @snippet.save
     redirect "/#{@snippet.id}"
   else
@@ -55,7 +28,7 @@ end
 
 # show
 get '/:id' do
-  @snippet = Snippet.get(params[:id])
+  @snippet = Snippet.find(params[:id])
   if @snippet
     erb :show
   else
