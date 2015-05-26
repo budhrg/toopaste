@@ -32,10 +32,10 @@ Clone from repo https://github.com/zapnap/toopaste.
 
 3. Run Toopaste as:
 
-       docker run -p <ur_machine_port>:9292 -d toopaste rackup
+       docker run -p \<ur_machine_port\>:9292 -d toopaste rackup
 
        or
 
-       docker run -p <ur_machine_port>:port_number -d toopaste rackup -p port_number
+       docker run -p \<ur_machine_port\>:port_number -d toopaste rackup -p port_number
 
 4.  Using a browser, go to `http://localhost:<ur_machine_port>`
