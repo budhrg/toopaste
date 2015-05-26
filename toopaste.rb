@@ -28,10 +28,19 @@ end
 
 # show
 get '/:id' do
-  @snippet = Snippet.find(params[:id])
-  if @snippet
-    erb :show
-  else
-    redirect '/'
+  if params[:id].is_number?
+    @snippet = Snippet.find(params[:id])
+    if @snippet
+      erb :show
+    else
+      redirect '/'
+    end
+  end
+end
+
+# Helper methods
+class String
+  def is_number?
+    true if Float(self) rescue false
   end
 end
