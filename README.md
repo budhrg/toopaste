@@ -50,5 +50,4 @@ Clone from repo https://github.com/zapnap/toopaste.
 
   Note: Give alias in capital
 
-
 5. Using a browser, go to `http://localhost:<ur_machine_port>`
