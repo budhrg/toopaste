@@ -2,7 +2,8 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'coderay'
 
-set :database, 'sqlite3:db/development.sqlite3'
+set :database_file, "config/database.yml"
+set :bind, '0.0.0.0'
 
 class Snippet < ActiveRecord::Base
   def formatted_body
