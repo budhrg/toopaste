@@ -3,5 +3,5 @@ development:
   database: toopaste
   host: <%= ENV["#{ENV['DB_PREFIX']}_PORT_3306_TCP_ADDR"] %>
   port: <%= ENV["#{ENV['DB_PREFIX']}_PORT_3306_TCP_PORT"] %>
-  username: root
-  password: <%= ENV["#{ENV['DB_PREFIX']}_ENV_MYSQL_ROOT_PASSWORD"] %>
+  username: <%= ENV["#{ENV['DB_PREFIX']}_ENV_MYSQL_USER"] %>
+  password: <%= ENV["#{ENV['DB_PREFIX']}_ENV_MYSQL_PASSWORD"] %>
