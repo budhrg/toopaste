@@ -1,4 +1,4 @@
-Toopaste
+Toopaste [![Codeship Status for budhrg/toopaste](https://www.codeship.io/projects/cc63cd10-08ef-0133-7b27-6a857506946a/status?branch=master)](https://codeship.com/projects/90428)
 ========
 
 A simple (and tiny) Pastie clone written in Sinatra and ActiveRecord.
