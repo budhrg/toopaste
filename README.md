@@ -51,3 +51,17 @@ Clone from repo https://github.com/zapnap/toopaste.
   Note: Give alias in capital
 
 5. Using a browser, go to `http://localhost:<ur_machine_port>`
+
+### Using [Docker Compose](https://docs.docker.com/compose/install)
+
+1. Git clone repo:
+
+        git clone https://github.com/budhrg/toopaste
+
+2. Pull mysql image from repo:
+
+        docker pull mysql:5.5
+
+3. docker-compose up -d
+
+4. Using a browser, go to `http://localhost:3000`
