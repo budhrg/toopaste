@@ -3,7 +3,12 @@ require 'sinatra/activerecord'
 require 'rouge'
 require 'sinatra/reloader' if development?
 
-set :database_file, 'config/database.yml'
+if development?
+  set :database_file, 'config/database.yml'
+else
+  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+end
+
 set :bind, '0.0.0.0'
 
 # Snippet class handle formatting code snippet
