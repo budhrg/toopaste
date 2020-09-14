@@ -1,12 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'sinatra'
 gem 'activerecord'
-gem 'sinatra-activerecord'
-gem 'mysql2'
-gem 'thin'
 gem 'coderay'
-
-group :development do
-  gem 'shotgun'
-end
+gem 'pg'
+gem 'sinatra'
+gem 'sinatra-contrib'
+gem 'sinatra-activerecord'
+gem 'thin'

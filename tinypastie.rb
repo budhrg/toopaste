@@ -1,10 +1,12 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'coderay'
+require 'sinatra/reloader' if development?
 
-set :database_file, "config/database.yml"
+set :database_file, 'config/database.yml'
 set :bind, '0.0.0.0'
 
+# Snippet class handle formatting code snippet
 class Snippet < ActiveRecord::Base
   def formatted_body
     CodeRay.scan(body, :ruby).div(line_numbers: :table)
@@ -19,7 +21,7 @@ end
 # create
 post '/' do
   @snippet = Snippet.new(title: params[:snippet_title],
-                         body: params[:snippet_body])
+                        body: params[:snippet_body])
   if @snippet.save
     redirect "/#{@snippet.id}"
   else
@@ -29,7 +31,9 @@ end
 
 # show
 get '/:id' do
-  if params[:id].is_number?
+  puts "========"
+  puts params[:id]
+  if params[:id].number?
     @snippet = Snippet.find(params[:id])
     if @snippet
       erb :show
@@ -41,7 +45,9 @@ end
 
 # Helper methods
 class String
-  def is_number?
-    true if Float(self) rescue false
+  def number?
+    true if Float(self)
+  rescue Exception
+    false
   end
 end

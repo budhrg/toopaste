@@ -1,4 +1,4 @@
-class CreateSnippet < ActiveRecord::Migration
+class CreateSnippet < ActiveRecord::Migration[6.0]
   def up
     create_table(:snippets, primary_key: :id) do |t|
       t.string :title, limit: 32, default: nil
