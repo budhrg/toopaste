@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'concurrent-ruby', '1.0.5'
 gem 'activerecord', '~> 6.0.3.3'
 gem 'rouge'
 gem 'pg'
