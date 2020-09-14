@@ -1,3 +1,3 @@
 web: bundle exec thin start -p $PORT
-release: bundle exec rake db:migrate
+release: bundle show && bundle exec rake db:migrate
 
