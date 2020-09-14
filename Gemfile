@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'bundler', '2.1.4'
 gem 'concurrent-ruby', '1.1.7'
 gem 'activerecord', '~> 6.0.3.3'
 gem 'rouge'
