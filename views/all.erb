@@ -1,0 +1,13 @@
+<div class="snippet">
+  <h1>All Snippets</h1>
+
+  <% @snippets.each_with_index do |snippet, index| %>
+    <p>#<%= index + 1 %>&gt;&nbsp; <%= snippet.title %> &nbsp;&nbsp; Created on <%= snippet.created_at.strftime("%d/%m/%Y at %T %Z") %></p>
+    <div class="sbody" id="content">
+      <%= snippet.formatted_body %>
+    </div>
+  <% end %>
+
+  <br/>
+  <a href="/">Create new paste!</a>
+</div>

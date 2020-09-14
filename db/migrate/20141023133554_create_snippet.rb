@@ -3,6 +3,7 @@ class CreateSnippet < ActiveRecord::Migration[6.0]
     create_table(:snippets, primary_key: :id) do |t|
       t.string :title, limit: 32, default: nil
       t.text :body, default: nil
+      t.string :lang, default: nil
       t.timestamps
     end
   end
